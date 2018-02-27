@@ -1,9 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const lessFunctions = require('less-plugin-functions')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const root = path.resolve(__dirname, '..')
@@ -22,25 +23,29 @@ const postCssOptions = {
 }
 
 const rules = {
-  js: {
-    test: /\.js$/,
-    enforce: 'pre',
-    loader: 'source-map-loader'
-  },
-  tsx: {
-    test: /\.tsx?$/,
-    include: path.resolve(root, 'src'),
+  jsx: {
+    test: /\.jsx?$/,
+    include: path.resolve(root, 'site-src'),
     exclude: /node_modules/,
-    use: ['react-hot-loader/webpack', 'awesome-typescript-loader']
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['env', 'react']
+      }
+    }
   },
-  tsxForPro: {
-    test: /\.tsx?$/,
-    include: path.resolve(root, 'src'),
-    exclude: /node_modules/,
-    loader: 'awesome-typescript-loader'
+  css: {
+    test: /\.css$/,
+    use: ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: [
+        {loader: 'css-loader', options: {importLoaders: 1}},
+        {loader: 'postcss-loader', options: postCssOptions}
+      ]
+    })
   },
   less: {
-    test: /\.less$/i,
+    test: /\.less$/,
     use: ExtractTextPlugin.extract({
       fallback: 'style-loader',
       use: [
@@ -52,82 +57,76 @@ const rules = {
   },
   url: {
     test: /\.(png|jpg|jpeg|gif)$/,
-    use: [{loader: 'url-loader', options: {limit: 8192}}]
+    use: {
+      loader: 'url-loader',
+      options: {
+        limit: 8192
+      }
+    }
   }
 }
 
 const base = {
   devtool: 'inline-source-map',
-  entry: path.resolve(root, 'src/index.ts'),
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.less']
-  },
-  externals: {
-    react: {
-      root: 'React',
-      commonjs2: 'react',
-      commonjs: 'react',
-      amd: 'react'
+    alias: {
+      'fantasy-ui': path.resolve(root, 'dist')
     },
-    'react-dom': {
-      root: 'ReactDOM',
-      commonjs2: 'react-dom',
-      commonjs: 'react-dom',
-      amd: 'react-dom'
-    }
+    extensions: ['.js', '.jsx', '.less']
   }
 }
 
 const development = {
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client',
+    'webpack/hot/only-dev-server',
+    path.resolve(root, 'site-src/index.js')
+  ],
   output: {
-    filename: 'index.ts',
-    path: path.resolve(root, 'dist'),
-    publicPath: 'dist/',
-    library: 'Fantasy-UI',
-    libraryTarget: 'umd'
+    filename: 'index.js',
+    path: path.resolve(root, 'site'),
+    publicPath: '/'
+  },
+  devServer: {
+    hot: true,
+    historyApiFallback: true,
+    port: 8080,
+    publicPath: '/',
+    contentBase: path.resolve(root, 'dist')
   },
   module: {
-    rules: [
-      rules.js,
-      rules.tsx,
-      rules.less,
-      rules.url
-    ]
+    rules: [rules.jsx, rules.css, rules.less, rules.url]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('index.css'),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(root, 'site-src/index.html')
     })
   ]
 }
 
 const production = {
-  devtool: 'cheep-source-map',
+  entry: path.resolve(root, 'site-src/index.js'),
   output: {
-    filename: 'index.ts',
-    path: path.resolve(root, 'dist'),
-    publicPath: 'dist/',
-    sourceMapFilename: 'fantasy-ui.sourcemap.js',
-    library: 'Fantasy-UI',
-    libraryTarget: 'umd'
+    filename: 'index.js',
+    path: path.resolve(root, 'site'),
+    publicPath: '/fantasy-ui'
   },
   module: {
-    rules: [
-      rules.js,
-      rules.tsxForProd,
-      rules.less,
-      rules.url
-    ]
+    rules: [rules.jsx, rules.css, rules.less, rules.url]
   },
   plugins: [
     new ExtractTextPlugin('index.css'),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(root, 'site-src/index.html')
     }),
     new UglifyJsPlugin({
       uglifyOptions: {

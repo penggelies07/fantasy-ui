@@ -1,21 +1,37 @@
+import * as React from 'react'
+import * as classnames from 'classnames'
 import './Avatar.less'
 
-import * as React from 'react'
-
 export interface IAvatarProps {
+  size?: 'small' | 'normal' | 'large'
+  shape?: number | 'circle' | 'square'
   src?: string
+  icon?: string
   title?: string
+  className?: string
+  style?: React.CSSProperties
 }
 
 export default class Avatar extends React.Component<IAvatarProps> {
 
   static defaultProps = {
-    src: '',
-    size: 'normal'
+    size: 'normal',
+    shape: 'square'
   }
 
   render () {
-    const {src, title} = this.props
+    const {
+      size,
+      shape,
+      src,
+      icon,
+      title,
+      className,
+      style,
+      children
+    } = this.props
+
+    
 
     return (
       <div

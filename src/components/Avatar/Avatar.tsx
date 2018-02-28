@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as classnames from 'classnames'
+// import * as classnames from 'classnames'
 import './Avatar.less'
 
 export interface IAvatarProps {
@@ -21,17 +21,15 @@ export default class Avatar extends React.Component<IAvatarProps> {
 
   render () {
     const {
-      size,
-      shape,
+      // size,
+      // shape,
       src,
-      icon,
+      // icon,
       title,
-      className,
-      style,
-      children
+      // className,
+      // style,
+      // children
     } = this.props
-
-    
 
     return (
       <div

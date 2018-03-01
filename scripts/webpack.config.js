@@ -80,7 +80,7 @@ const base = {
 
 const development = {
   output: {
-    filename: 'index.ts',
+    filename: 'index.js',
     path: path.resolve(root, 'dist'),
     publicPath: 'dist/',
     library: 'Fantasy-UI',
@@ -105,7 +105,7 @@ const development = {
 const production = {
   devtool: 'cheep-source-map',
   output: {
-    filename: 'index.ts',
+    filename: 'index.js',
     path: path.resolve(root, 'dist'),
     publicPath: 'dist/',
     sourceMapFilename: 'fantasy-ui.sourcemap.js',

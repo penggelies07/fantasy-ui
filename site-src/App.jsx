@@ -1,10 +1,14 @@
 import * as React from 'react'
 import {withRouter} from 'react-router'
+import {Avatar} from 'fantasy-ui'
+import 'fantasy-ui/index.css'
 
 class App extends React.Component {
   render () {
     return (
-      <div>123</div>
+      <div>
+        <Avatar />
+      </div>
     )
   }
 }

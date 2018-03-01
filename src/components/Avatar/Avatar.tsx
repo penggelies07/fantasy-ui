@@ -1,12 +1,11 @@
 import * as React from 'react'
-// import * as classnames from 'classnames'
+import * as classnames from 'classnames'
 import './Avatar.less'
 
 export interface IAvatarProps {
   size?: 'small' | 'normal' | 'large'
   shape?: number | 'circle' | 'square'
   src?: string
-  icon?: string
   title?: string
   className?: string
   style?: React.CSSProperties
@@ -18,24 +17,42 @@ export default class Avatar extends React.Component<IAvatarProps> {
     size: 'normal',
     shape: 'square'
   }
+  
+  prefixCls = 'fui-Avatar'
 
   render () {
     const {
-      // size,
-      // shape,
+      size,
+      shape,
       src,
-      // icon,
       title,
-      // className,
-      // style,
-      // children
+      className,
+      style
     } = this.props
+
+    // className
+    const classString = classnames(this.prefixCls, className, {
+      [`${this.prefixCls}-${size}`]: !!size
+
+    })
+
+    // style
+    const borderRadius = shape &&
+      shape === 'square'
+      ? '2px'
+      : shape === 'circle'
+        ? '9999px'
+        : shape + 'px'
+
+    const styleString = Object.assign({}, style, {borderRadius})
 
     return (
       <div
+        className={classString}
+        style={styleString}
         title={title}
       >
-        {src && <img className='bui-avatar__img' src={src}/>}
+        {src && <img src={src} />}
       </div>
     )
   }

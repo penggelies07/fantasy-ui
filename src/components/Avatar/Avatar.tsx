@@ -15,8 +15,7 @@ export interface IAvatarProps {
 export default class Avatar extends React.Component<IAvatarProps> {
 
   static defaultProps = {
-    size: 'normal',
-    shape: 'square'
+    size: 'normal'
   }
   
   prefixCls = 'fui-Avatar'
@@ -34,13 +33,12 @@ export default class Avatar extends React.Component<IAvatarProps> {
     // className
     const classString = classnames(this.prefixCls, className, {
       [`${this.prefixCls}-${size}`]: !!size
-
     })
 
     // style
     const borderRadius = shape &&
-      shape === 'square'
-      ? '2px'
+      shape === 'rectangle'
+      ? '0'
       : shape === 'circle'
         ? '9999px'
         : shape + 'px'

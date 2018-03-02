@@ -1,0 +1,94 @@
+@import "../../styles/mixins";
+@import "../../styles/variables/widget/Button";
+
+.button-size (@name, @fontSize, @paddingV, @paddingH, @height) {
+  &-@{name} {
+    padding: @paddingV @paddingH;
+
+    font-size: @fontSize;
+    line-height: @fontSize + 2px;
+  }
+
+  &-onlyIcon {
+    padding: @paddingV 0;
+    width: @height !important;
+  }
+}
+
+.button-type (@name, @background, @color) {
+  &-@{name} {
+    background: @background;
+    color: @color;
+    box-shadow: outside-shadow(@background);
+
+    &:hover {
+      background: lighten(@background, 6%);
+
+      & when (@name = white) {
+        background: darken(@background, 4%);
+      }
+    }
+
+    &:active {
+      background: darken(@background, 6%);
+
+      & when (@name = white) {
+        background: darken(@background, 10%);
+      }
+    }
+  }
+}
+
+.fui-Button {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  border-radius: @button-borderRadius;
+
+  line-height: 1.2em;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+
+  background: transparent;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+          appearance: none;
+  transition: background 0.3s,
+              color 0.3s,
+              box-shadow 0.3s;
+  
+  &-fullWidth {
+    display: flex;
+
+    width: 100%;
+  }
+
+  &-disabled,
+  &-loading {
+    opacity: 0.67;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .fui-Icon + span {
+    margin-left: 4px;
+  }
+
+  .button-size(small, @button-fontSize-small, @button-paddingV-small, @button-paddingH-small, @button-height-small);
+  .button-size(normal, @button-fontSize-normal, @button-paddingV-normal, @button-paddingH-normal, @button-height-normal);
+  .button-size(large, @button-fontSize-large, @button-paddingV-large, @button-paddingH-large, @button-height-large);
+
+  .button-type(default, @button-background-default, @button-color-default);
+  .button-type(primary, @button-background-primary, @button-color-primary);
+  .button-type(success, @button-background-success, @button-color-success);
+  .button-type(warning, @button-background-warning, @button-color-warning);
+  .button-type(danger, @button-background-danger, @button-color-danger);
+  .button-type(info, @button-background-info, @button-color-info);
+  .button-type(white, @button-background-white, @button-color-white);
+}

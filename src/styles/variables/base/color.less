@@ -8,6 +8,14 @@
 @color-black-pure: #000;
 @color-white-pure: #fff;
 
-@color-black: hsl(hue(@color-primary), 3%, 10%);
+@color-white-dark: mix(@color-white-pure, @color-primary, 99%);
 
+@color-black: hsl(hue(@color-primary), 3%, 10%);
+@color-black-light: hsl(hue(@color-black), 10%, 30%);
+@color-black-lighter: hsl(hue(@color-black), 10%, 45%);
+
+@color-gray-darker: hsl(hue(@color-black), 3%, 55%);
+@color-gray-dark: hsl(hue(@color-black), 3%, 70%);
+@color-gray: hsl(hue(@color-black), 3%, 80%);
 @color-gray-light: hsl(hue(@color-black), 3%, 88%);
+@color-gray-lighter: hsl(hue(@color-black), 3%, 95%);

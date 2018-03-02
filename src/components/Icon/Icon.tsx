@@ -5,6 +5,7 @@ import './Icon.less'
 
 export interface IIconProps {
   color?: ColorType
+  gradient?: string
   spinning?: boolean
   className?: string
   style?: React.CSSProperties
@@ -18,8 +19,6 @@ export default class Icon extends React.Component<IIconProps> {
 
   prefixCls = 'fui-Icon'
   
-  presetColors = ['default', 'primary', 'secondary', 'success', 'warning', 'danger', 'info']
-
   render () {
     const {
       color,
@@ -29,9 +28,10 @@ export default class Icon extends React.Component<IIconProps> {
       children
     } = this.props
     
+    // className
     const classString = classnames(this.prefixCls, 'material-icons', className, {
       [`${this.prefixCls}-spinning`]: !!spinning,
-      [`${this.prefixCls}-${color}`]: !!color && this.presetColors.indexOf(color) > -1
+      [`${this.prefixCls}-${color}`]: !!color
     })
     
     return (

@@ -8,6 +8,11 @@
 }
 
 .fui-Icon {
+  display: inline-block;
+  flex-shrink: 0;
+
+  font-size: inherit;
+
   &-spinning {
     animation: fantasy-Icon-spinning 2s infinite linear;
   }
@@ -18,6 +23,7 @@
   .icon-color(warning, @icon-color-warning);
   .icon-color(danger, @icon-color-danger);
   .icon-color(info, @icon-color-info);
+  .icon-color(white, @icon-color-white);
 }
 
 @keyframes fantasy-Icon-spinning {

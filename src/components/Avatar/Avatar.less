@@ -1,7 +1,7 @@
 @import "../../styles/mixins";
 @import "../../styles/variables/widget/Avatar";
 
-.avatar-style (@name, @size, @borderRadius) {
+.avatar-size (@name, @size, @borderRadius) {
   &-@{name} {
     border-radius: @borderRadius;
     .square(@size);
@@ -47,7 +47,7 @@
     }
   }
 
-  .avatar-style(small, @avatar-size-small, @avatar-borderRadius-small);
-  .avatar-style(normal, @avatar-size-normal, @avatar-borderRadius-normal);
-  .avatar-style(large, @avatar-size-large, @avatar-borderRadius-large);
+  .avatar-size(small, @avatar-size-small, @avatar-borderRadius-small);
+  .avatar-size(normal, @avatar-size-normal, @avatar-borderRadius-normal);
+  .avatar-size(large, @avatar-size-large, @avatar-borderRadius-large);
 }

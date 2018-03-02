@@ -1,0 +1,31 @@
+@import "../../styles/mixins";
+@import "../../styles/variables/widget/Icon";
+
+.icon-color (@name, @color) {
+  &-@{name} {
+    color: @color;
+  }
+}
+
+.fui-Icon {
+  &-spinning {
+    animation: fantasy-Icon-spinning 2s infinite linear;
+  }
+
+  .icon-color(default, @icon-color-default);
+  .icon-color(primary, @icon-color-primary);
+  .icon-color(success, @icon-color-success);
+  .icon-color(warning, @icon-color-warning);
+  .icon-color(danger, @icon-color-danger);
+  .icon-color(info, @icon-color-info);
+}
+
+@keyframes fantasy-Icon-spinning {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

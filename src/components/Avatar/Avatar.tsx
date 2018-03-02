@@ -1,10 +1,11 @@
 import * as React from 'react'
 import * as classnames from 'classnames'
+import {SizeType, ShapeType} from '../../commons/PropTypes'
 import './Avatar.less'
 
 export interface IAvatarProps {
-  size?: 'small' | 'normal' | 'large'
-  shape?: number | 'circle' | 'square'
+  size?: SizeType
+  shape?: ShapeType
   src?: string
   title?: string
   className?: string

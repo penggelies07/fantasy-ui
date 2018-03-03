@@ -7,33 +7,122 @@
 
     font-size: @fontSize;
     line-height: @fontSize + 2px;
-  }
 
-  &-onlyIcon {
-    padding: @paddingV 0;
-    width: @height !important;
+    &.fui-Button-onlyIcon {
+      padding: @paddingV 0;
+      width: @height !important;
+    }
+  }
+}
+
+.button-gradient (@name, @background, @boxShadow) {
+  &.fui-Button-gradient-@{name} {
+    background: @background;
+    box-shadow: @boxShadow;
   }
 }
 
 .button-type (@name, @background, @color) {
   &-@{name} {
-    background: @background;
-    color: @color;
-    box-shadow: outside-shadow(@background);
+    &.fui-Button-raised {
+      background: @background;
+      color: @color;
+      box-shadow: outside-shadow(@background);
 
-    &:hover {
-      background: lighten(@background, 6%);
+      &:hover {
+        background: lighten(@background, 6%);
+      }
+
+      &:active {
+        background: darken(@background, 6%);
+      }
 
       & when (@name = white) {
-        background: darken(@background, 4%);
+        box-shadow: outside-shadow(@button-background-default);
+
+        &:hover {
+          background: darken(@background, 4%);
+        }
+
+        &:active {
+          background: darken(@background, 10%);
+        }
       }
     }
 
-    &:active {
-      background: darken(@background, 6%);
+    &.fui-Button-flat {
+      background: inherit;
+      color: @background;
+      box-shadow: none;
+
+      &:hover {
+        background: lighten(@background, 25%);
+      }
+  
+      &:active {
+        background: lighten(@background, 15%);
+      }
 
       & when (@name = white) {
-        background: darken(@background, 10%);
+        color: @button-background-default;
+
+        &:hover {
+          background: lighten(@button-background-default, 25%);
+        }
+
+        &:active {
+          background: lighten(@button-background-default, 15%);
+        }
+      }
+    }
+
+    &.fui-Button-ring {
+      background: @button-background-white;
+      color: @background;
+      box-shadow: outside-shadow(@background, 70%),
+                  border-shadow(@background, 60%);
+
+      &:hover {
+        background: @button-background-white;
+        box-shadow: outside-shadow(@background, 80%),
+                    border-shadow(@background, 0%);
+      }
+
+      &:active {
+        background: fadeout(@background, 90%);
+      }
+
+      & when (@name = default), (@name = white) {
+        box-shadow: outside-shadow(@button-background-default);
+        color: @fontColor;
+
+        &:hover {
+          background: @button-background-white;
+          box-shadow: outside-shadow(@button-background-default, 80%),
+                        border-shadow(@button-background-default, 0%);
+        }
+
+        &:active {
+          background: fadeout(@button-background-default, 90%);
+        }
+      }
+    }
+
+    &.fui-Button-gradient {
+      color: @button-color;
+      
+      .button-gradient(primary, @button-gradient-primary, @button-boxShadow-primary);
+      .button-gradient(success, @button-gradient-success, @button-boxShadow-success);
+      .button-gradient(warning, @button-gradient-warning, @button-boxShadow-warning);
+      .button-gradient(danger, @button-gradient-danger, @button-boxShadow-danger);
+      .button-gradient(info, @button-gradient-info, @button-boxShadow-info);
+
+      &:hover {
+        opacity: .8;
+      }
+
+      &:active {
+        opacity: 1;
       }
     }
   }

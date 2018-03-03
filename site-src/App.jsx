@@ -6,7 +6,7 @@ import 'fantasy-ui/index.css'
 class App extends React.Component {
   render () {
     return (
-      <div style={{background: '#f7f7f7'}}>
+      <div>
         <Avatar />
 
         <Icon color='primary' spinning>build</Icon>
@@ -15,10 +15,28 @@ class App extends React.Component {
         <Icon color='danger'>build</Icon>
         <Icon color='info'>build</Icon>
         <Icon>build</Icon>
-        <Button loading>123</Button>
 
+        <Button variant='raised' type='default'>(raised\default)</Button>
+        <Button variant='raised' type='white'>(raised\white)</Button>
+        <Button variant='raised' type='primary'>(raised\primary)</Button>
+        <Button variant='raised' type='success'>(raised\success)</Button>
+        <Button variant='raised' type='warning'>(raised\warning)</Button>
+        <Button variant='raised' type='danger'>(raised\danger)</Button>
+        <Button variant='raised' type='info'>(raised\info)</Button>
+        <Button variant='flat' type='default'>(flat\default)</Button>
+        <Button variant='flat' type='white'>(flat\white)</Button>
+        <Button variant='flat' type='success'>(flat\primary)</Button>
+        <Button variant='ring' type='default'>(ring\default)</Button>
+        <Button variant='ring' type='white'>(ring\white)</Button>
+        <Button variant='ring' type='danger'>(ring\primary)</Button>
+        <Button variant='gradient' type='primary'>(gradient\primary)</Button>
+        <Button variant='gradient' type='success'>(gradient\success)</Button>
+        <Button variant='gradient' type='danger'>(gradient\danger)</Button>
+        <Button variant='gradient' type='warning'>(gradient\warning)</Button>
+        <Button variant='gradient' type='info'>(gradient\info)</Button>
+        
         <Button icon='data_usage' disabled/>
-        <Button type='primary' fullWidth shape={10} icon='data_usage'>123</Button>
+        <Button type='white' shape={10} icon='data_usage'>123</Button>
       </div>
     )
   }

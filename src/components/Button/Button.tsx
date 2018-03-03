@@ -1,6 +1,12 @@
 import * as React from 'react'
 import * as classnames from 'classnames'
-import {SizeType, ColorType, ShapeType, NativeType} from '../../commons/PropTypes'
+import {
+  SizeType,
+  ColorType,
+  ShapeType,
+  NativeType,
+  VariantType
+} from '../../commons/PropTypes'
 import Icon from '../Icon'
 import './Button.less'
 
@@ -9,10 +15,9 @@ export interface IButtonProps {
   type?: ColorType
   nativeType?: NativeType
   shape?: ShapeType
-  gradient?: string
+  variant?: VariantType
   icon?: string
   fullWidth?: boolean
-  ghost?: boolean
   disabled?: boolean
   loading?: boolean
   className?: string
@@ -33,7 +38,8 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
   static defaultProps: IButtonProps = {
     size: 'normal',
     type: 'default',
-    nativeType: 'button'
+    nativeType: 'button',
+    variant: 'raised'
   }
 
   // static Group = ButtonGroup
@@ -53,9 +59,9 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
       type,
       nativeType,
       shape,
+      variant,
       icon,
       fullWidth,
-      ghost,
       disabled,
       loading,
       className,
@@ -67,9 +73,10 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
     const classString = classnames(this.prefixCls, className, {
       [`${this.prefixCls}-${size}`]: !!size,
       [`${this.prefixCls}-${type}`]: !!type,
+      [`${this.prefixCls}-${variant}`]: !!variant,
+      [`${this.prefixCls}-gradient-${type}`]: !!type && variant === 'gradient',
       [`${this.prefixCls}-fullWidth`]: fullWidth,
       [`${this.prefixCls}-onlyIcon`]: !!icon && !children,
-      [`${this.prefixCls}-ghost`]: ghost,
       [`${this.prefixCls}-disabled`]: disabled,
       [`${this.prefixCls}-loading`]: loading
     })

@@ -4,3 +4,4 @@ export type ColorType = 'default' | 'primary' | 'secondary' | 'success' | 'warni
 
 // Button
 export type NativeType =  'button' | 'submit' | 'reset'
+export type VariantType = 'raised' | 'flat' | 'ring' | 'gradient'

@@ -35,8 +35,14 @@ class App extends React.Component {
         <Button variant='gradient' type='warning'>(gradient\warning)</Button>
         <Button variant='gradient' type='info'>(gradient\info)</Button>
         
-        <Button icon='data_usage' disabled/>
-        <Button type='white' shape={10} icon='data_usage'>123</Button>
+        <Button icon='data_usage' variant='gradient' />
+        <Button type='white' fullWidth shape={10} icon='data_usage'>123</Button>
+      
+        <Button.Group fullWidth direction='vertical'>
+          <Button>上一首</Button>
+          <Button>播放</Button>
+          <Button>下一首</Button>
+        </Button.Group>
       </div>
     )
   }

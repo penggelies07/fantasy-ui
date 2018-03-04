@@ -7,6 +7,7 @@ import {
   NativeType,
   VariantType
 } from '../../commons/PropTypes'
+import ButtonGroup from './ButtonGroup'
 import Icon from '../Icon'
 import './Button.less'
 
@@ -42,7 +43,7 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
     variant: 'raised'
   }
 
-  // static Group = ButtonGroup
+  static Group = ButtonGroup
 
   prefixCls = 'fui-Button'
   
@@ -50,6 +51,19 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
     super(props)
     this.state = {
       loading: !!props.loading
+    }
+  }
+
+  handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const onClick = this.props.onClick || (() => {/* Do nothing */})
+
+    const promise = onClick(e)
+
+    if (promise instanceof Promise) {
+      this.setState({loading: true})
+      promise.then(() => {
+        this.setState({loading: false})
+      })
     }
   }
 
@@ -66,7 +80,11 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
       loading,
       className,
       style,
-      children
+      children,
+      onMouseDown,
+      onMouseUp,
+      onMouseEnter,
+      onMouseLeave
     } = this.props
 
     // className
@@ -97,6 +115,11 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
         disabled={disabled || loading}
         className={classString}
         style={styleString}
+        onClick={this.handleClick}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
         {
           loading

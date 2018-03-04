@@ -124,6 +124,20 @@
       &:active {
         opacity: 1;
       }
+      
+      & when (@name = default), (@name = white) {
+        background: @button-gradient-default;
+        color: @fontColor;
+        box-shadow: @button-boxShadow-default;
+
+        &:hover {
+          background: lighten(@button-background-default, 25%);
+        }
+
+        &:active {
+          background: lighten(@button-background-default, 15%);
+        }
+      }
     }
   }
 }

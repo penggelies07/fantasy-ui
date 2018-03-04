@@ -13,7 +13,7 @@ import './Button.less'
 
 export interface IButtonProps {
   size?: SizeType
-  type?: ColorType
+  type?: ColorType | 'white'
   nativeType?: NativeType
   shape?: ShapeType
   variant?: VariantType

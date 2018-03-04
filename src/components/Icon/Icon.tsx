@@ -4,7 +4,7 @@ import {ColorType} from '../../commons/PropTypes'
 import './Icon.less'
 
 export interface IIconProps {
-  color?: ColorType
+  color?: ColorType | 'white'
   gradient?: string
   spinning?: boolean
   className?: string

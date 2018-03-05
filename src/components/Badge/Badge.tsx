@@ -7,9 +7,8 @@ import './Badge.less'
 
 export interface IBadgeProps {
   type?: ColorType
-  count?: number | React.ReactNode
+  count?: number | string
   overflowCount?: number
-  showZero?: boolean
   dot?: boolean
   offset?: {top?: string, right?: string}
   className?: string,
@@ -36,27 +35,38 @@ export default class Badge extends React.Component<IBadgeProps> {
       type,
       count,
       overflowCount,
-      showZero,
       dot,
+      offset,
       className,
-      style,
-      children
+      style
     } = this.props
 
+    // className
     const classString = classnames(this.prefixCls, className, {
       [`${this.prefixCls}-${type}`]: !!type
     })
 
-    // const childrenString = dot
-    //   ? <span className=`${this.prefixCls}-${type}`></span>
-    //   : h
+    const text = typeof count === 'number'
+      ? overflowCount && (count > overflowCount)
+        ? overflowCount + '+'
+        : count > 0
+          ? count
+          : 0
+      : count && count.trim()  
+
+    // children
+    const childrenString = dot
+      ? <span className={`${this.prefixCls}-dot`} style={offset} />
+      : text
+        ? <span className={`${this.prefixCls}-count`} style={offset}>{text}</span>
+        : null
 
     return (
       <span
         className={classString}
         style={style}
       >
-        {children}
+        {childrenString}
       </span>
     )
   }

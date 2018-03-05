@@ -1,8 +1,6 @@
 import * as React from 'react'
 import * as classnames from 'classnames'
-import {
-  ColorType
-} from '../../commons/PropTypes'
+import {ColorType} from '../../commons/PropTypes'
 import './Badge.less'
 
 export interface IBadgeProps {
@@ -25,11 +23,6 @@ export default class Badge extends React.Component<IBadgeProps> {
 
   prefixCls = 'fui-Badge'
 
-  constructor (props: IBadgeProps) {
-    super(props)
-    this.state = {}
-  }
-
   render () {
     const {
       type,
@@ -38,24 +31,25 @@ export default class Badge extends React.Component<IBadgeProps> {
       dot,
       offset,
       className,
-      style
+      style,
+      children
     } = this.props
 
     // className
     const classString = classnames(this.prefixCls, className, {
-      [`${this.prefixCls}-${type}`]: !!type
+      [`${this.prefixCls}-${type}`]: !!type,
+      [`${this.prefixCls}-float`]: !!children
     })
 
     const text = typeof count === 'number'
-      ? overflowCount && (count > overflowCount)
-        ? overflowCount + '+'
-        : count > 0
-          ? count
-          : 0
-      : count && count.trim()  
-
-    // children
-    const childrenString = dot
+    ? overflowCount && (count > overflowCount)
+    ? overflowCount + '+'
+    : count > 0
+    ? count
+    : 0
+    : count && count.trim()
+    
+    const el = dot
       ? <span className={`${this.prefixCls}-dot`} style={offset} />
       : text
         ? <span className={`${this.prefixCls}-count`} style={offset}>{text}</span>
@@ -66,7 +60,8 @@ export default class Badge extends React.Component<IBadgeProps> {
         className={classString}
         style={style}
       >
-        {childrenString}
+        {children}
+        {el}
       </span>
     )
   }

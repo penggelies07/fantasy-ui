@@ -46,7 +46,7 @@ class App extends React.Component {
 
         <Badge count={1} type='primary'><Button>上一首</Button></Badge>
      
-        <Checkbox>123</Checkbox>
+        <Checkbox type='success' size='large'>123</Checkbox>
       </div>
     )
   }

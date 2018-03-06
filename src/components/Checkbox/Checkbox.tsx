@@ -22,7 +22,8 @@ export interface ICheckboxState {
 export default class Checkbox extends React.Component<ICheckboxProps, ICheckboxState> {
 
   static defaultProps = {
-    size: 'normal'
+    size: 'normal',
+    type: 'default'
   }
 
   prefixCls = 'fui-Checkbox'
@@ -92,7 +93,7 @@ export default class Checkbox extends React.Component<ICheckboxProps, ICheckboxS
             onChange={this.handleChange}
           />
         </span>
-        <span>{children}</span>
+        <span className='fui-Checkbox-text'>{children}</span>
       </label>
     )
   }

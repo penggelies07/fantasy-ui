@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {withRouter} from 'react-router'
-import {Avatar, Icon, Button, Badge} from 'fantasy-ui'
+import {Avatar, Icon, Button, Badge, Checkbox} from 'fantasy-ui'
 import 'fantasy-ui/index.css'
 
 class App extends React.Component {
@@ -45,6 +45,8 @@ class App extends React.Component {
         </Button.Group>
 
         <Badge count={1} type='primary'><Button>上一首</Button></Badge>
+     
+        <Checkbox>123</Checkbox>
       </div>
     )
   }

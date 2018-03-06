@@ -47,9 +47,9 @@ export default class Avatar extends React.Component<IAvatarProps> {
 
     return (
       <div
+        title={title}
         className={classString}
         style={styleString}
-        title={title}
       >
         {src && <img src={src} />}
       </div>

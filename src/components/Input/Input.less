@@ -1,0 +1,114 @@
+@import "../../styles/mixins";
+@import "../../styles/variables/widget/Input";
+
+.input-size (@name, @paddingV, @paddingH, @fontSize) {
+  &.fui-Input-@{name} {
+    font-size: @fontSize;
+    line-height: @fontSize + 2px;
+
+    .fui-Input-input {
+      padding: @paddingV @paddingH;
+
+      font-size: @fontSize;
+      line-height: @fontSize + 2px;
+    }
+
+    .fui-Input-hasPrefix {
+      .fui-Input-input {
+        padding-left: (@paddingV * 2) + (@fontSize * 0.8);
+      }
+
+      .fui-Input-prefix {
+        left: @paddingV;
+      }
+    }
+
+    .fui-Input-hasSuffix {
+      .fui-Input-input {
+        padding-left: (@paddingV * 2) + (@fontSize * 0.8);
+      }
+
+      .fui-Input-suffix {
+        left: @paddingV;
+      }
+    }
+  }
+}
+
+.fui-Input {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+
+  border: 0;
+  margin: 16px 0 8px 0;
+  padding: 0;
+  min-width: 0;
+
+  &-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    padding: 0;
+
+    font-size: @fontSize;
+    line-height: 1;
+
+    color: @input-label-color;
+  }
+
+  &-wrapper {
+    position: relative;
+    display: inline-flex;
+
+    border-radius: @input-borderRadius;
+    margin-top: 20px;
+
+    text-align: left;
+  }
+    
+  &-wrapper & {
+    &-input {
+      display: block;
+
+      box-sizing: border-box;
+      border: none;
+      border-radius: inherit;
+      width: 100%;
+      min-width: 0;
+
+      text-align: inherit;
+
+      background: @input-fill;
+      box-shadow: outside-shadow(@input-border-color),
+                  border-shadow(@input-border-color, 0%);
+      color: @input-color;
+      outline: none;
+      appearance: none;
+      transition: background 0.3s, box-shadow 0.3s;
+
+      &::placeholder {
+        opacity: 0.4;
+      }
+    }
+
+    &-prefix, &-suffix {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      transform: translateY(-50%);
+      line-height: 0;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+  
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .input-size(normal, @input-paddingV-normal, @input-paddingH-normal, @input-fontSize-normal);
+  .input-size(small, @input-paddingV-small, @input-paddingH-small, @input-fontSize-small);
+  .input-size(large, @input-paddingV-large, @input-paddingH-large, @input-fontSize-large);
+}

@@ -71,6 +71,7 @@ export default class Checkbox extends React.Component<ICheckboxProps, ICheckboxS
 
     const {checked} = this.state
 
+    // className
     const classString = classnames(this.prefixCls, className, {
       [`${this.prefixCls}-${size}`]: !!size,
       [`${this.prefixCls}-checked`]: checked,

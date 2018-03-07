@@ -4,5 +4,8 @@ export type ColorType = 'default' | 'primary' | 'secondary' | 'success' | 'warni
 export type DirectionType = 'vertical' | 'horizontal'
 
 // Button
-export type NativeType =  'button' | 'submit' | 'reset'
+export type ButtonNativeType =  'button' | 'submit' | 'reset'
 export type VariantType = 'raised' | 'flat' | 'ring' | 'gradient'
+
+// Input
+export type InputNativeType = 'text' | 'password'

@@ -4,7 +4,7 @@ import {
   SizeType,
   ColorType,
   ShapeType,
-  NativeType,
+  ButtonNativeType,
   VariantType
 } from '../../commons/PropTypes'
 import ButtonGroup from './ButtonGroup'
@@ -14,7 +14,7 @@ import './Button.less'
 export interface IButtonProps {
   size?: SizeType
   type?: ColorType | 'white'
-  nativeType?: NativeType
+  nativeType?: ButtonNativeType
   shape?: ShapeType
   variant?: VariantType
   icon?: string

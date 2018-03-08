@@ -35,6 +35,26 @@
   }
 }
 
+.input-color (@name, @hoverColor, @activeColor) {
+  &.fui-Input-@{name} {
+    &:hover .fui-Input-wrapper {
+      box-shadow: outside-shadow(@hoverColor),
+                  border-shadow(@hoverColor, 0%);
+    }
+
+    & .fui-Input-input {
+      &:focus {
+        box-shadow: outside-shadow(@activeColor, 70%),
+                    border-shadow(@activeColor, 0%);
+      }
+    }
+
+    & .fui-Input-input::focus & .fui-Input-label{
+      color: @activeColor;
+    }
+  }
+}
+
 .fui-Input {
   position: relative;
   display: inline-flex;
@@ -111,4 +131,25 @@
   .input-size(normal, @input-paddingV-normal, @input-paddingH-normal, @input-fontSize-normal);
   .input-size(small, @input-paddingV-small, @input-paddingH-small, @input-fontSize-small);
   .input-size(large, @input-paddingV-large, @input-paddingH-large, @input-fontSize-large);
+
+  .input-color(default, @input-hover-default, @input-active-default);
+  .input-color(primary, @input-hover-primary, @input-active-primary);
+  .input-color(success, @input-hover-success, @input-active-success);
+  .input-color(warning, @input-hover-warning, @input-active-warning);
+  .input-color(danger, @input-hover-danger, @input-active-danger);
+  .input-color(info, @input-hover-info, @input-active-info);
+
+  &-disabled &-input {
+    background: @input-disabled-fill;
+    color: @input-disabled-color;
+    box-shadow:
+      outside-shadow(@input-border-color),
+      border-shadow(@input-border-color, 0%) !important;
+    cursor: default;
+  }
+
+  &-fullWidth {
+    display: block;
+    width: 100%;
+  }
 }

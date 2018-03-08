@@ -25,11 +25,11 @@
 
     .fui-Input-hasSuffix {
       .fui-Input-input {
-        padding-left: (@paddingV * 2) + (@fontSize * 0.8);
+        padding-right: (@paddingV * 2) + (@fontSize * 0.8);
       }
 
       .fui-Input-suffix {
-        left: @paddingV;
+        right: @paddingV;
       }
     }
   }
@@ -37,7 +37,7 @@
 
 .input-color (@name, @hoverColor, @activeColor) {
   &.fui-Input-@{name} {
-    &:hover .fui-Input-wrapper {
+    &:hover .fui-Input-input {
       box-shadow: outside-shadow(@hoverColor),
                   border-shadow(@hoverColor, 0%);
     }
@@ -49,9 +49,9 @@
       }
     }
 
-    & .fui-Input-input::focus & .fui-Input-label{
-      color: @activeColor;
-    }
+    // & .fui-Input-label, .fui-Input-wrapper .fui-Input-input::focus {
+    //   color: @activeColor;
+    // }
   }
 }
 
@@ -80,7 +80,7 @@
 
   &-wrapper {
     position: relative;
-    display: inline-flex;
+    display: inline-block;
 
     border-radius: @input-borderRadius;
     margin-top: 20px;
@@ -105,7 +105,9 @@
                   border-shadow(@input-border-color, 0%);
       color: @input-color;
       outline: none;
-      appearance: none;
+      -webkit-appearance: none;
+         -moz-appearance: none;
+              appearance: none;
       transition: background 0.3s, box-shadow 0.3s;
 
       &::placeholder {

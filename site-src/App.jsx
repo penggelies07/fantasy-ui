@@ -48,7 +48,7 @@ class App extends React.Component {
      
         <Checkbox size='large'>123</Checkbox>
 
-        <Input label='123' type='primary'/>
+        <Input label='123' type='primary' prefix='tune' suffix='tune'/>
       </div>
     )
   }

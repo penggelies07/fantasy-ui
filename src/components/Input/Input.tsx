@@ -89,6 +89,7 @@ export default class Input extends React.Component<IInputProps> {
       [`${this.prefixCls}-hasPrefix`]: !!prefix,
       [`${this.prefixCls}-hasSuffix`]: !!suffix
     })
+
     // style
     const borderRadius = shape &&
       shape === 'rectangle'
@@ -96,6 +97,9 @@ export default class Input extends React.Component<IInputProps> {
       : shape === 'circle'
         ? '9999px'
         : shape + 'px'
+    
+    // const labelColor = type &&
+// 
 
     const prefixEl = typeof prefix === 'string' ? <Icon>{prefix}</Icon> : prefix
     const suffixEl = typeof suffix === 'string' ? <Icon>{suffix}</Icon> : suffix

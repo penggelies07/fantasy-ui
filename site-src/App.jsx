@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {withRouter} from 'react-router'
-import {Avatar, Icon, Button, Badge, Checkbox, Input} from 'fantasy-ui'
+import {Avatar, Icon, Button, Badge, Checkbox, Input, Tag} from 'fantasy-ui'
 import 'fantasy-ui/index.css'
 
 class App extends React.Component {
@@ -48,7 +48,12 @@ class App extends React.Component {
      
         <Checkbox size='large'>123</Checkbox>
 
-        <Input label='123' type='primary' prefix='tune' suffix='tune'/>
+        <Input placeholder='123123' label='123'fullWidth disableBorder prefix='tune' suffix='tune'/>
+        <Input.Group fullWidth prefix='tune' suffix='tune'>
+          <Input prefix='tune' suffix='tune'/>
+        </Input.Group>
+
+        <Tag label='123' type='primary' clickable closable />
       </div>
     )
   }

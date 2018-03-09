@@ -44,8 +44,6 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
   }
 
   static Group = ButtonGroup
-
-  prefixCls = 'fui-Button'
   
   constructor (props: IButtonProps) {
     super(props)
@@ -53,6 +51,8 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
       loading: !!props.loading
     }
   }
+
+  prefixCls = 'fui-Button'
 
   handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const onClick = this.props.onClick || (() => {/* Do nothing */})

@@ -53,6 +53,18 @@
     //   color: @activeColor;
     // }
   }
+
+  &-disableBorder&.fui-Input-@{name} {
+    &:hover .fui-Input-input {
+      box-shadow: none;
+    }
+
+    & .fui-Input-input {
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
 }
 
 .fui-Input {
@@ -61,7 +73,7 @@
   flex-direction: column;
 
   border: 0;
-  margin: 16px 0 8px 0;
+  border-radius: @input-borderRadius;
   padding: 0;
   min-width: 0;
 
@@ -76,16 +88,20 @@
     line-height: 1;
 
     color: @input-label-color;
+    transition: color .3s;
   }
 
   &-wrapper {
     position: relative;
     display: inline-block;
 
-    border-radius: @input-borderRadius;
-    margin-top: 20px;
+    border-radius: inherit;
 
     text-align: left;
+  }
+
+  &-label + &-wrapper {
+    margin-top: 20px;
   }
     
   &-wrapper & {
@@ -108,7 +124,7 @@
       -webkit-appearance: none;
          -moz-appearance: none;
               appearance: none;
-      transition: background 0.3s, box-shadow 0.3s;
+      transition: background .3s, box-shadow .3s;
 
       &::placeholder {
         opacity: 0.4;
@@ -117,11 +133,15 @@
 
     &-prefix, &-suffix {
       position: absolute;
-      z-index: 2;
       top: 50%;
-      transform: translateY(-50%);
+      z-index: 2;
+
       line-height: 0;
+
+      color: @input-color;
       opacity: 0.8;
+      cursor: default;
+      transform: translateY(-50%);
       transition: opacity 0.2s;
   
       &:hover {
@@ -150,8 +170,17 @@
     cursor: default;
   }
 
+  &-disableBorder &-input {
+    box-shadow: none;
+  }
+
   &-fullWidth {
     display: block;
+
     width: 100%;
+
+    .fui-Input-wrapper {
+      width: 100%;
+    }
   }
 }

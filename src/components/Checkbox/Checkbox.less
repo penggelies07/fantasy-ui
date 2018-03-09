@@ -48,8 +48,8 @@
 
     vertical-align: middle;
 
-    box-shadow: outside-shadow(@checkbox-border-color, 70%),
-                border-shadow(@checkbox-border-color, 60%, @checkbox-border-width);
+    box-shadow: outside-shadow(@checkbox-borderColor, 70%),
+                border-shadow(@checkbox-borderColor, 60%, @checkbox-borderWidth);
     transition: all .3s;
 
     &::after {
@@ -121,11 +121,11 @@
     &-wrapper {
       background: @checkbox-fill-disabled;
       box-shadow:
-        outside-shadow(@checkbox-border-color, 70%),
-        border-shadow(@checkbox-border-color, 80%, 2px) !important;
+        outside-shadow(@checkbox-borderColor, 70%),
+        border-shadow(@checkbox-borderColor, 80%, 2px) !important;
   
       &::after {
-        border-color: fade(@checkbox-border-color, 60%);
+        border-color: fade(@checkbox-borderColor, 60%);
       }
     }
 

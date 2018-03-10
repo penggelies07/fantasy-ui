@@ -54,7 +54,8 @@ export default class Tag extends React.Component<ITagProps> {
     const classString = classnames(this.prefixCls, className, {
       [`${this.prefixCls}-${type}`]: !!type,
       [`${this.prefixCls}-${size}`]: !!size,
-      [`${this.prefixCls}-clickable`]: clickable
+      [`${this.prefixCls}-clickable`]: clickable,
+      [`${this.prefixCls}-closable`]: closable
     })
 
     // style

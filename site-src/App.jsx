@@ -53,7 +53,7 @@ class App extends React.Component {
           <Input prefix='tune' suffix='tune'/>
         </Input.Group>
 
-        <Tag label='123' type='primary' clickable closable />
+        <Tag label='哈哈' type='primary' clickable closable size='large' />
       </div>
     )
   }

@@ -13,19 +13,6 @@
       
       color: @fontColor;
     }
-
-    // .fui-tag-close {
-    //   top: @paddingV;
-    //   right: @paddingH;
-    // }
-
-    &.fui-tag-closable {
-      padding-right: @paddingH + @fontSize + 3px;
-
-      &:hover .fui-tag-close {
-        opacity: 1;
-      }
-    }
   }
 }
 
@@ -67,8 +54,6 @@
   }
   
   &-close {
-    // position: absolute;
-    
     opacity: 0.6;
     cursor: pointer;
     transition: opacity 0.3s;
@@ -76,6 +61,10 @@
   
   &-clickable {
     cursor: pointer;
+
+    &:hover .fui-Tag-close {
+      opacity: 1;
+    }
   }
 
   .tag-size(normal, @tag-paddingV-normal, @tag-paddingH-normal, @tag-fontSize-normal);

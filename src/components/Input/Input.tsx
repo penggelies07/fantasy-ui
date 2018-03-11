@@ -62,7 +62,7 @@ export default class Input extends React.Component<IInputProps, IInputState> {
 
   handleChange = (e: React.ChangeEvent<any>) => {
     const onChange = this.props.onChange || (() => {/* Do nothing */})
-    
+
     onChange(e, e.target.value)
   }
 
@@ -72,7 +72,7 @@ export default class Input extends React.Component<IInputProps, IInputState> {
     this.setState({labelColor})
 
     const onFocus = this.props.onFocus || (() => {/* Do nothing */})
-    
+
     onFocus(e)
   }
 
@@ -81,7 +81,7 @@ export default class Input extends React.Component<IInputProps, IInputState> {
     this.setState({labelColor})
 
     const onBlur = this.props.onBlur || (() => {/* Do nothing */})
-    
+
     onBlur(e)
   }
 

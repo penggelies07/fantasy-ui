@@ -53,7 +53,18 @@ class App extends React.Component {
           <Input prefix='tune' suffix='tune'/>
         </Input.Group>
 
-        <Tag label='哈哈' type='primary' clickable closable size='large' />
+        <Tag label='哈哈' type='primary' clickable size='small' shape='circle' closable
+        deleteIcon={
+          <Icon>build</Icon>
+        } />
+         <Tag label='哈哈' type='primary' clickable size='normal' shape='circle' closable
+        deleteIcon={
+          <Icon>build</Icon>
+        } />
+        <Tag label='哈哈' type='primary' clickable size='large' shape='circle' closable
+        deleteIcon={
+          <Icon>build</Icon>
+        } />
       </div>
     )
   }

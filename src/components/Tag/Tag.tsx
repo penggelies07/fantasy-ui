@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as classnames from 'classnames'
 import {ColorType, SizeType, ShapeType} from '../../commons/PropTypes'
+import Avatar from '../Avatar'
 import Icon from '../Icon'
 import './Tag.less'
 
@@ -11,7 +12,7 @@ export interface ITagProps {
   label?: string
   clickable?: boolean
   closable?: boolean
-  avatar?: React.ReactNode
+  avatar?: string
   deleteIcon?: React.ReactNode
   className?: string
   style?: React.CSSProperties
@@ -66,7 +67,7 @@ export default class Tag extends React.Component<ITagProps> {
         ? '9999px'
         : shape + 'px'
 
-    const styleString = Object.assign({}, style, borderRadius)
+    const styleString = Object.assign({}, style, {borderRadius})
 
     return (
       <div 
@@ -74,7 +75,7 @@ export default class Tag extends React.Component<ITagProps> {
         style={styleString}
         onClick={onClick}
       >
-        {avatar && <div>{avatar}</div>}
+        {avatar && <div className='fui-Tag-avatar'><Avatar src={avatar} shape='circle' /></div>}
         <span className='fui-Tag-label'>{label}</span>
         {
           closable &&

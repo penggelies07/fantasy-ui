@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {withRouter} from 'react-router'
-import {Avatar, Icon, Button, Badge, Checkbox, Input, Tag} from 'fantasy-ui'
+import {Avatar, Icon, Button, Badge, Checkbox, Input, InputNumber, Tag} from 'fantasy-ui'
 import 'fantasy-ui/index.css'
 
 class App extends React.Component {
@@ -65,6 +65,8 @@ class App extends React.Component {
         deleteIcon={
           <Icon>build</Icon>
         } />
+
+        <InputNumber label='123'/>
       </div>
     )
   }

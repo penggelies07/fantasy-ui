@@ -35,13 +35,21 @@ export interface IInputNumberProps {
   onKeyDown?: React.FormEventHandler<any>
 }
 
-export interface IInputNumberState {}
+export interface IInputNumberState {
+  value: string
+}
 
 export default class InputNumber extends React.Component<IInputNumberProps, IInputNumberState> {
 
+  static defaultProps: IInputNumberProps = {
+    showHandlers: true
+  }
+
   constructor (props: IInputNumberProps) {
     super(props)
-    this.state = {}
+    this.state = {
+      value: props.value || '0'
+    }
   }
 
   prefixCls = 'fui-InputNumber'
@@ -57,7 +65,7 @@ export default class InputNumber extends React.Component<IInputNumberProps, IInp
 
   handleChange = (e: React.ChangeEvent<any>) => {
     const onChange = this.props.onChange || (() => {/* Do nothing */})
-
+  console.log(typeof e.target.value)
     onChange(e, e.target.value)
   }
 

@@ -1,10 +1,31 @@
 import * as React from 'react'
 import {withRouter} from 'react-router'
-import {Avatar, Icon, Button, Badge, Checkbox, Input, InputNumber, Tag} from 'fantasy-ui'
+import {Avatar, Icon, Button, Badge, Checkbox, Drawer, Input, InputNumber, Tag} from 'fantasy-ui'
 import 'fantasy-ui/index.css'
 
 class App extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      a: 100,
+      visible: false
+    }
+
+    this.onChange = this.onChange.bind(this)
+    this.toggleDrawer = this.toggleDrawer.bind(this)
+  }
+
+  onChange (e, value) {
+    this.setState({a: value})
+  }
+
+  toggleDrawer () {
+    const {visible} = this.state
+    this.setState({visible: !visible})
+  }
+
   render () {
+    const {a, visible} = this.state
     return (
       <div>
         <Avatar />
@@ -66,7 +87,13 @@ class App extends React.Component {
           <Icon>build</Icon>
         } />
 
-        <InputNumber label='123'/>
+        <InputNumber label='123' showHandlers value={a} onChange={this.onChange}/>
+
+        <Button icon='data_usage' variant='gradient' onClick={this.toggleDrawer}>开启抽屉</Button>
+        <Drawer
+          visible={visible}
+          onChange={(e, v) => this.setState({visible: v})}
+        />
       </div>
     )
   }

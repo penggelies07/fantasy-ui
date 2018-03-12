@@ -76,7 +76,7 @@ export default class Input extends React.Component<IInputProps, IInputState> {
     onFocus(e)
   }
 
-  handleBlur = (e: any) => {
+  handleBlur = (e: React.FormEvent<any>) => {
     const labelColor = themeStyle.match('default')
     this.setState({labelColor})
 

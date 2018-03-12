@@ -9,3 +9,6 @@ export type VariantType = 'raised' | 'flat' | 'ring' | 'gradient'
 
 // Input
 export type InputNativeType = 'text' | 'password'
+
+// Drawer
+export type AnchorType = 'left' | 'right'

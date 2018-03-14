@@ -7,12 +7,11 @@ import './Drawer.less'
 
 export interface IDrawerProps {
   anchor?: AnchorType
-  visible: boolean
   width?: number
+  visible: boolean
+  fixed?: boolean
   className?: string
   style?: React.CSSProperties
-  containerClassName?: string
-  containerStyle?: React.CSSProperties
   overlayClassName?: string
   overlayStyle?: React.CSSProperties
   onChange?: (e: React.ChangeEvent<any>, value: boolean) => void
@@ -25,9 +24,10 @@ export interface IDrawerState {
 export default class Drawer extends React.Component<IDrawerProps, IDrawerState> {
 
   static defaultProps = {
+    anchor: 'left',
     visible: false,
     width: 300,
-    anchor: 'left'
+    fixed: false
   }
 
   constructor (props: IDrawerProps) {
@@ -45,7 +45,7 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
     }
   }
 
-  onClose = (e: React.MouseEvent<HTMLDivElement>) => {
+  handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
     if (this.props.onChange) {
       this.props.onChange(e, false)
     }
@@ -54,12 +54,11 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
 
   render () {
     const {
-      width,
       anchor,
+      width,
+      fixed,
       className,
       style,
-      containerClassName,
-      containerStyle,
       overlayClassName,
       overlayStyle,
       children
@@ -70,32 +69,31 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
     } = this.state
 
     // className
-    const classString = classnames(this.prefixCls, className)
-
-    const containerClassString = classnames('fui-Drawer-inner', containerClassName, {
-      [`Drawer-${anchor}`]: !!anchor
+    const classString = classnames(this.prefixCls, className, {
+      [`${this.prefixCls}-${anchor}`]: !!anchor,
+      [`${this.prefixCls}-fixed`]: fixed
     })
 
     // string
-    const containerStyleString = Object.assign({width}, containerStyle)
+    const styleString = Object.assign({width}, style)
 
     return (
-      <div className={classString} style={style}>
+      <div>
         <Overlay
           className={overlayClassName}
           style={overlayStyle}
           visible={visible}
-          onClick={this.onClose}
+          onClick={this.handleClose}
         />
 
         <CSSTransition
-          classNames='fui-Drawer-inner'
+          classNames='fui-Drawer'
           mountOnEnter
           unmountOnExit
           in={visible}
           timeout={300}
         >
-          <div className={containerClassString} style={containerStyleString}>
+          <div className={classString} style={styleString}>
             {children}
           </div>
         </CSSTransition>

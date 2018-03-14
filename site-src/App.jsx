@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {withRouter} from 'react-router'
-import {Avatar, Icon, Button, Badge, Checkbox, Drawer, Input, InputNumber, Tag} from 'fantasy-ui'
+import {Avatar, Icon, Button, Badge, Checkbox, Drawer, Input, InputNumber, Tag, List} from 'fantasy-ui'
 import 'fantasy-ui/index.css'
 
 class App extends React.Component {
@@ -8,11 +8,13 @@ class App extends React.Component {
     super(props)
     this.state = {
       a: 100,
-      visible: false
+      visible: false,
+      values: []
     }
 
     this.onChange = this.onChange.bind(this)
     this.toggleDrawer = this.toggleDrawer.bind(this)
+    this.onToggle = this.onToggle.bind(this)
   }
 
   onChange (e, value) {
@@ -23,6 +25,21 @@ class App extends React.Component {
     const {visible} = this.state
     this.setState({visible: !visible})
   }
+
+  onToggle (e, value) {
+    const values = this.state.values
+
+    if (this.isSelected(value)) {
+      this.setState({values: values.filter((v) => v !== value)})
+    } else {
+      this.setState({values: [...values, value]})
+    }
+  }
+
+  isSelected (value) {
+    return !!this.state.values.find((v) => v === value)
+  }
+
 
   render () {
     const {a, visible} = this.state
@@ -87,13 +104,31 @@ class App extends React.Component {
           <Icon>build</Icon>
         } />
 
-        <InputNumber label='123' showHandlers value={a} onChange={this.onChange}/>
-
-        <Button icon='data_usage' variant='gradient' onClick={this.toggleDrawer}>开启抽屉</Button>
-        <Drawer
-          visible={visible}
-          onChange={(e, v) => this.setState({visible: v})}
-        />
+        <div>
+          <InputNumber showHandlers value={a} onChange={this.onChange}/>
+          
+          <Button icon='data_usage' variant='gradient' onClick={this.toggleDrawer}>开启抽屉</Button>
+          <Drawer
+            visible={visible}
+            onChange={(e, v) => this.setState({visible: v})}
+          />
+        </div>
+        <div>
+          <Input />
+          <Button >你和</Button>
+        </div>
+        <div>
+          <List title='Fruits' size='large'>
+            {['Apple', 'Banana', 'Pear', 'Orange'].map((value) => (
+              <List.Item
+                key={value}
+                value={value}
+                selected={this.isSelected(value)}
+                onClick={this.onToggle}
+              >{value}</List.Item>
+            ))}
+          </List>
+        </div>
       </div>
     )
   }

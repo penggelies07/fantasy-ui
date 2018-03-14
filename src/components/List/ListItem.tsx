@@ -33,6 +33,7 @@ export default class ListItem extends React.Component<IListItemProps> {
       children
     } = this.props
 
+    // className
     const classString = classnames(this.prefixCls, className, {
       [`${this.prefixCls}-selected`]: selected
     })

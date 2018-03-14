@@ -1,0 +1,25 @@
+// Clear-fix
+
+.clear (@place: after) {
+  .css () {
+    content: "";
+    display: table;
+
+    height: 0;
+
+    font-size: 0;
+
+    visibility: hidden;
+    clear: both;
+  }
+  
+  & when (@place = true) {
+    .css()
+  }
+
+  & when (@place = after) {
+    &:after {
+      .css()
+    }
+  }
+}

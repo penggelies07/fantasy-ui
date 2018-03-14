@@ -30,6 +30,7 @@ export default class List extends React.Component<IListProps> {
       children
     } = this.props
 
+    // className
     const classString = classnames(this.prefixCls, className, {
       [`${this.prefixCls}-${size}`]: !!size
     })

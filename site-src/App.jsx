@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {withRouter} from 'react-router'
-import {Avatar, Icon, Button, Badge, Checkbox, Drawer, Input, InputNumber, Tag, List} from 'fantasy-ui'
+import {Avatar, Icon, Button, Badge, Divider, Checkbox, Drawer, Input, InputNumber, Tag, List, Col, Row} from 'fantasy-ui'
 import 'fantasy-ui/index.css'
 
 class App extends React.Component {
@@ -128,6 +128,51 @@ class App extends React.Component {
               >{value}</List.Item>
             ))}
           </List>
+        </div>
+        <div>
+          <Row gutter={10}>
+            <Col span={2}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+            <Col span={6}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+            <Col span={2}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+            <Col span={6}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+            <Col span={2}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+            <Col span={6}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+          </Row>
+          <Row gutter={10}>
+            <Col xs={24} sm={12} md={8} lg={4} xl={2}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+            <Col xs={24} sm={12} md={8} lg={4} xl={2}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+            <Col xs={24} sm={12} md={8} lg={4} xl={2}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+            <Col xs={24} sm={12} md={8} lg={4} xl={2}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+            <Col xs={24} sm={12} md={8} lg={4} xl={2}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+            <Col xs={24} sm={12} md={8} lg={4} xl={2}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+          </Row>
+          <Row gutter={10}>
+            <Col span={12}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+            <Col span={12}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+          </Row>
+          <Row gutter={10}>
+            <Col span={24}><div className='mb10 g'
+            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
+          </Row>
+        </div>
+        <div style={{display: 'flex', height: '168px'}}>
+          <div style={{height: '200px', background: 'blue'}}></div>
+          <Divider><Icon>tune</Icon></Divider>
+          <div style={{height: '200px', background: 'blue'}}></div>
         </div>
       </div>
     )

@@ -1,0 +1,25 @@
+.scroll-bar () {
+  &:hover {
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-thumb:horizontal,
+    &::-webkit-scrollbar-thumb:vertical {
+      background: rgba(0, 0, 0, 0.16);
+    }
+  }
+
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-thumb:horizontal,
+  &::-webkit-scrollbar-thumb:vertical {
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}

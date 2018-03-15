@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {withRouter} from 'react-router'
-import {Avatar, Icon, Button, Badge, Divider, Checkbox, Drawer, Input, InputNumber, Tag, List, Col, Row} from 'fantasy-ui'
+import {Avatar, Icon, Button, Badge, ScrollBar, Divider, Checkbox, Drawer, Input, InputNumber, Tag, List, Col, Row} from 'fantasy-ui'
 import 'fantasy-ui/index.css'
 
 class App extends React.Component {
@@ -173,6 +173,14 @@ class App extends React.Component {
           <div style={{height: '200px', background: 'blue'}}></div>
           <Divider><Icon>tune</Icon></Divider>
           <div style={{height: '200px', background: 'blue'}}></div>
+        </div>
+
+        <div style={{height: '200px'}}>
+          <ScrollBar>
+            <div style={{padding: '10px'}}>
+              <div style={{height: '700px', background: '#f7f7f7'}}></div>
+            </div>
+          </ScrollBar>
         </div>
       </div>
     )

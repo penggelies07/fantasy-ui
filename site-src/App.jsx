@@ -1,191 +1,96 @@
 import * as React from 'react'
 import {withRouter} from 'react-router'
-import {Avatar, Icon, Button, Badge, Paper, ScrollBar, Divider, Checkbox, Drawer, Input, InputNumber, Tag, List, Col, Row} from 'fantasy-ui'
+import {Route, Link} from 'react-router-dom'
+import {
+  Col,
+  Divider,
+  Icon,
+  Input,
+  Row,
+  ScrollBar,
+  List
+} from 'fantasy-ui'
 import 'fantasy-ui/index.css'
+import './App.less'
+
+import Page from './Page'
+import components from './components'
+
+const logo = require('./assets/logo.png')
 
 class App extends React.Component {
+
   constructor (props) {
     super(props)
     this.state = {
-      a: 100,
-      visible: false,
-      values: []
+      searchKey: ''
     }
 
-    this.onChange = this.onChange.bind(this)
-    this.toggleDrawer = this.toggleDrawer.bind(this)
-    this.onToggle = this.onToggle.bind(this)
+    this.onSearchKeyChange = this.onSearchKeyChange.bind(this)
+    this.onSearchKeyClear = this.onSearchKeyClear.bind(this)
+    this.onClickMenuItem = this.onClickMenuItem.bind(this)
   }
 
-  onChange (e, value) {
-    this.setState({a: value})
+  onSearchKeyClear () {
+    this.setState({searchKey: ''})
   }
 
-  toggleDrawer () {
-    const {visible} = this.state
-    this.setState({visible: !visible})
+  onSearchKeyChange (e, searchKey) {
+    this.setState({searchKey: searchKey.toLowerCase()})
   }
 
-  onToggle (e, value) {
-    const values = this.state.values
-
-    if (this.isSelected(value)) {
-      this.setState({values: values.filter((v) => v !== value)})
-    } else {
-      this.setState({values: [...values, value]})
-    }
+  onClickMenuItem (e, value) {
+    this.props.history.push(this.props.match.url + value)
   }
-
-  isSelected (value) {
-    return !!this.state.values.find((v) => v === value)
-  }
-
 
   render () {
-    const {a, visible} = this.state
+    const {searchKey} = this.state
+    const url = this.props.location.pathname.slice(1)
+    const filteredComponents = components.filter((c) => c.meta.title.toLowerCase().indexOf(searchKey) > -1)
+
     return (
-      <div>
-        <Avatar />
-
-        <Icon color='primary' spinning>build</Icon>
-        <Icon color='success'>data_usage</Icon>
-        <Icon color='warning'>build</Icon>
-        <Icon color='danger'>build</Icon>
-        <Icon color='info'>build</Icon>
-        <Icon>build</Icon>
-
-        <Button variant='raised' type='default'>(raised\default)</Button>
-        <Button variant='raised' type='white'>(raised\white)</Button>
-        <Button variant='raised' type='primary'>(raised\primary)</Button>
-        <Button variant='raised' type='success'>(raised\success)</Button>
-        <Button variant='raised' type='warning'>(raised\warning)</Button>
-        <Button variant='raised' type='danger'>(raised\danger)</Button>
-        <Button variant='raised' type='info'>(raised\info)</Button>
-        <Button variant='flat' type='default'>(flat\default)</Button>
-        <Button variant='flat' type='white'>(flat\white)</Button>
-        <Button variant='flat' type='success'>(flat\primary)</Button>
-        <Button variant='ring' type='default'>(ring\default)</Button>
-        <Button variant='ring' type='white'>(ring\white)</Button>
-        <Button variant='ring' type='danger'>(ring\primary)</Button>
-        <Button variant='gradient' type='primary'>(gradient\primary)</Button>
-        <Button variant='gradient' type='success'>(gradient\success)</Button>
-        <Button variant='gradient' type='danger'>(gradient\danger)</Button>
-        <Button variant='gradient' type='warning'>(gradient\warning)</Button>
-        <Button variant='gradient' type='info'>(gradient\info)</Button>
-        
-        <Button icon='data_usage' variant='gradient' />
-        <Button type='white' fullWidth shape={10} icon='data_usage'>123</Button>
-      
-        <Button.Group fullWidth direction='vertical'>
-          <Button>上一首</Button>
-          <Button>播放</Button>
-          <Button>下一首</Button>
-        </Button.Group>
-
-        <Badge count={1} type='primary'><Button>上一首</Button></Badge>
-     
-        <Checkbox size='large'>123</Checkbox>
-
-        <Input placeholder='123123' label='123'fullWidth disableBorder prefix='tune' suffix='tune'/>
-        <Input.Group fullWidth prefix='tune' suffix='tune'>
-          <Input prefix='tune' suffix='tune'/>
-        </Input.Group>
-
-        <Tag label='哈哈' type='primary' clickable size='small' shape='circle' closable
-        deleteIcon={
-          <Icon>build</Icon>
-        } />
-         <Tag label='哈哈' type='primary' clickable size='normal' shape='circle' closable
-        deleteIcon={
-          <Icon>build</Icon>
-        } />
-        <Tag label='哈哈' type='primary' clickable size='large' shape='circle' closable
-        deleteIcon={
-          <Icon>build</Icon>
-        } />
-
-        <div>
-          <InputNumber showHandlers value={a} onChange={this.onChange}/>
-          
-          <Button icon='data_usage' variant='gradient' onClick={this.toggleDrawer}>开启抽屉</Button>
-          <Drawer
-            visible={visible}
-            onChange={(e, v) => this.setState({visible: v})}
-          />
-        </div>
-        <div>
-          <Input />
-          <Button >你和</Button>
-        </div>
-        <div>
-          <List title='Fruits' size='large'>
-            {['Apple', 'Banana', 'Pear', 'Orange'].map((value) => (
-              <List.Item
-                key={value}
-                value={value}
-                selected={this.isSelected(value)}
-                onClick={this.onToggle}
-              >{value}</List.Item>
-            ))}
-          </List>
-        </div>
-        <div>
-          <Row gutter={10}>
-            <Col span={2}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-            <Col span={6}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-            <Col span={2}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-            <Col span={6}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-            <Col span={2}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-            <Col span={6}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-          </Row>
-          <Row gutter={10}>
-            <Col xs={24} sm={12} md={8} lg={4} xl={2}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-            <Col xs={24} sm={12} md={8} lg={4} xl={2}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-            <Col xs={24} sm={12} md={8} lg={4} xl={2}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-            <Col xs={24} sm={12} md={8} lg={4} xl={2}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-            <Col xs={24} sm={12} md={8} lg={4} xl={2}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-            <Col xs={24} sm={12} md={8} lg={4} xl={2}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-          </Row>
-          <Row gutter={10}>
-            <Col span={12}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-            <Col span={12}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-          </Row>
-          <Row gutter={10}>
-            <Col span={24}><div className='mb10 g'
-            style={{background: '#f3f3f3', minHeight: '50px', marginBottom: '10px'}}/></Col>
-          </Row>
-        </div>
-        <div style={{display: 'flex', height: '168px'}}>
-          <div style={{height: '200px', background: 'blue'}}></div>
-          <Divider><Icon>tune</Icon></Divider>
-          <div style={{height: '200px', background: 'blue'}}></div>
-        </div>
-
-        <div style={{height: '200px'}}>
-          <ScrollBar>
-            <div style={{padding: '10px'}}>
-              <div style={{height: '700px', background: '#f7f7f7'}}></div>
-            </div>
-          </ScrollBar>
-        </div>
-
-        <div>
-          <Paper bordered raised><div style={{height: '40px', background: '#f3f3f3'}}/></Paper>
-        </div>
+      <div className='App'>
+        <Row className='App-wrapper'>
+          <Col className='App-header' xs={24} sm={24} md={6} lg={6} xl={6}>
+            <h1 className='App-title'>
+              <img className='App-logo' src={logo} alt='Fantasy UI'/>
+              <sup className='App-version'>v0.1</sup>
+              <div className='App-subTitle'>React Components</div>
+            </h1>
+            <Divider light />
+            <Input
+              fullWidth
+              value={searchKey}
+              // placeholder={`A total of ${components.length}`}
+              suffix={(
+                <Icon onClick={this.onSearchKeyClear}>{searchKey ? 'close' : 'search'}</Icon>
+              )}
+              onChange={this.onSearchKeyChange}
+            />
+            <ScrollBar className='App-menu'>
+              <List size='large'>
+                {/* <a href='https://github.com/varHarrie/bright-ui'>
+                  <List.Item><Icon name='github'>GitHub</Icon></List.Item>
+                </a> */}
+                <Link to='/'>
+                  <List.Item selected={url === ''}><Icon name='book'>快速上手</Icon></List.Item>
+                </Link>
+                {filteredComponents.map((component) => (
+                  <List.Item
+                    key={component.meta.title}
+                    selected={url === component.meta.title}
+                    value={component.meta.title}
+                    onClick={this.onClickMenuItem}>
+                    {component.meta.title}&nbsp;{component.meta.subtitle || ''}
+                  </List.Item>
+                ))}
+              </List>
+            </ScrollBar>
+          </Col>
+          <Col className='App-content' xs={24} sm={24} md={18} lg={18} xl={18}>
+            <Route path='/:name?' component={Page}/>
+          </Col>
+        </Row>
       </div>
     )
   }

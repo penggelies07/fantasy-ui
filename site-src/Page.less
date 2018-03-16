@@ -1,0 +1,48 @@
+@import '../src/styles/mixins';
+@import '../src/styles/variables/base';
+
+.Page {
+  position: relative;
+
+  background: #F0F5F9;
+
+  &-header {
+    padding: 20px 40px 200px;
+
+    background: #4B4B5A;
+ 
+    .Page-title {
+      margin: 0;
+      color: @color-white-pure;
+    }
+  }
+  
+  &-content {
+    z-index: 1;
+
+    padding: 0 40px;
+    width: 100%;
+
+    transform: translateY(-180px);
+
+    .fui-Paper {
+      box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.04),
+                0px 3px 20px 2px rgba(0, 0, 0, 0.03),
+                0px 1px 40px 10px rgba(0, 0, 0, 0.03);
+    }
+  }
+
+  blockquote {
+    margin: 0;
+  }
+
+  pre {
+    padding: 10px;
+    background: #F0F5F9;
+
+    code  {
+      font-family: consolas;
+      font-size: 14px;
+    }
+  }
+}

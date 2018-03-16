@@ -11,20 +11,50 @@ subtitle: 头像
 
 ```js
 import React from 'react'
-import {Avatar} from 'bright-ui'
+import {Avatar} from 'fantasy-ui'
 
 export default class AvatarSize extends React.Component {
   render () {
     return (
       <div>
         <div className='ib mr10'>
-          <Avatar size='small'/>
+          <Avatar size='small' />
         </div>
+        <div className='ib mr10'>
+          <Avatar />
+        </div>
+        <div className='ib mr10'>
+          <Avatar size='large' />
+        </div>
+      </div>
+    )
+  }
+}
+```
+
+## 形状
+
+设置圆角大小
+
+```js
+import React from 'react'
+import {Avatar} from 'fantasy-ui'
+
+export default class AvatarRadius extends React.Component {
+  render () {
+    return (
+      <div>
         <div className='ib mr10'>
           <Avatar/>
         </div>
         <div className='ib mr10'>
-          <Avatar size='large'/>
+          <Avatar shape={10} />
+        </div>
+        <div className='ib mr10'>
+          <Avatar shape='rectangle' />
+        </div>
+        <div className='ib mr10'>
+          <Avatar shape='circle' />
         </div>
       </div>
     )
@@ -38,44 +68,14 @@ export default class AvatarSize extends React.Component {
 
 ```js
 import React from 'react'
-import {Avatar} from 'bright-ui'
+import {Avatar} from 'fantasy-ui'
 
 export default class AvatarRadius extends React.Component {
   render () {
     return (
       <div>
         <div>
-          <Avatar title='title'/>
-        </div>
-      </div>
-    )
-  }
-}
-```
-
-## 圆角
-
-设置圆角大小
-
-```js
-import React from 'react'
-import {Avatar} from 'bright-ui'
-
-export default class AvatarRadius extends React.Component {
-  render () {
-    return (
-      <div>
-        <div className='ib mr10'>
-          <Avatar/>
-        </div>
-        <div className='ib mr10'>
-          <Avatar radius={10}/>
-        </div>
-        <div className='ib mr10'>
-          <Avatar radius='square'/>
-        </div>
-        <div className='ib mr10'>
-          <Avatar radius='circle'/>
+          <Avatar title='title' />
         </div>
       </div>
     )
@@ -87,7 +87,7 @@ export default class AvatarRadius extends React.Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |---|---|---|---|
-| radius | 圆角大小 | 'number' \|'square' \| 'circle' | - |
-| size | 尺寸 | 'small' \| 'normal' \|'circle' | 'normal' |
-| src | 资源地址 | string | - |
+| size | 尺寸 | 'small' \|'normal' \| 'large' | 'normal' |
+| radius | 形状 | 'number' \|'square' \| 'circle' | - |
+| src | 图片src属性 | string | - |
 | title | 鼠标悬停时显示的文本 | string | - |

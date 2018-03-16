@@ -40,7 +40,7 @@ export default class AvatarSize extends React.Component {
 import React from 'react'
 import {Avatar} from 'fantasy-ui'
 
-export default class AvatarRadius extends React.Component {
+export default class AvatarShape extends React.Component {
   render () {
     return (
       <div>
@@ -70,7 +70,7 @@ export default class AvatarRadius extends React.Component {
 import React from 'react'
 import {Avatar} from 'fantasy-ui'
 
-export default class AvatarRadius extends React.Component {
+export default class AvatarTitle extends React.Component {
   render () {
     return (
       <div>
@@ -88,6 +88,6 @@ export default class AvatarRadius extends React.Component {
 | 参数 | 说明 | 类型 | 默认值 |
 |---|---|---|---|
 | size | 尺寸 | 'small' \|'normal' \| 'large' | 'normal' |
-| radius | 形状 | 'number' \|'square' \| 'circle' | - |
+| shape | 形状 | 'number' \|'rectangle' \| 'circle' | - |
 | src | 图片src属性 | string | - |
 | title | 鼠标悬停时显示的文本 | string | - |

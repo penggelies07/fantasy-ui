@@ -37,6 +37,10 @@
       &:not(:first-child) {
         margin-left: -1px !important;
       }
+
+      &:hover {
+        z-index: 2;
+      }
     }
   }
 
@@ -70,6 +74,16 @@
       &:not(:first-child) {
         margin-left: -1px !important;
       }
+
+      &:hover {
+        z-index: 2;
+      }
+    }
+  }
+
+  &:not(.bui-button-group--full) {
+    & + & {
+      margin-left: 5px;
     }
   }
 }

@@ -61,7 +61,7 @@ class App extends React.Component {
             <Input
               fullWidth
               value={searchKey}
-              // placeholder={`A total of ${components.length}`}
+              placeholder={`A total of ${components.length}`}
               suffix={(
                 <Icon onClick={this.onSearchKeyClear}>{searchKey ? 'close' : 'search'}</Icon>
               )}
@@ -69,9 +69,9 @@ class App extends React.Component {
             />
             <ScrollBar className='App-menu'>
               <List size='large'>
-                {/* <a href='https://github.com/varHarrie/bright-ui'>
-                  <List.Item><Icon name='github'>GitHub</Icon></List.Item>
-                </a> */}
+                <a href='https://github.com/penggelies07/fantasy-ui'>
+                  <List.Item>GitHub</List.Item>
+                </a>
                 <Link to='/'>
                   <List.Item selected={url === ''}><Icon name='book'>快速上手</Icon></List.Item>
                 </Link>

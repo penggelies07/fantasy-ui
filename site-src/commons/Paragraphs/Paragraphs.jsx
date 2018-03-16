@@ -1,5 +1,4 @@
 import React from 'react'
-import * as classnames from 'classnames'
 import PropTypes from 'prop-types'
 import './Paragraphs.less'
 
@@ -9,7 +8,7 @@ export default class Paragraphs extends React.Component {
 
     return (
       <div
-        className={classnames(className, 'Paragraphs')}
+        className='Paragraphs'
         style={style}
       >
         {Array(total).fill(0).map((_, i) => (

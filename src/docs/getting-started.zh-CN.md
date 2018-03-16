@@ -5,7 +5,7 @@
 ## 安装
 
 ```bash
-npm install bright-ui --save
+npm install fantasy-ui --save
 ```
 
 ## 使用

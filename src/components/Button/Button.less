@@ -183,6 +183,12 @@
     margin-left: 4px;
   }
 
+  &:not(.bui-button--full) {
+    & + & {
+      margin-left: 5px;
+    }
+  }
+
   .button-size(small, @button-fontSize-small, @button-paddingV-small, @button-paddingH-small, @button-height-small);
   .button-size(normal, @button-fontSize-normal, @button-paddingV-normal, @button-paddingH-normal, @button-height-normal);
   .button-size(large, @button-fontSize-large, @button-paddingV-large, @button-paddingH-large, @button-height-large);

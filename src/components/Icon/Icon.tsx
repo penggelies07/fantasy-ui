@@ -5,7 +5,6 @@ import './Icon.less'
 
 export interface IIconProps {
   color?: ColorType | 'white'
-  gradient?: string
   spinning?: boolean
   className?: string
   style?: React.CSSProperties

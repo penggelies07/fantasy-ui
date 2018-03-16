@@ -10,6 +10,7 @@ export interface IDrawerProps {
   width?: number
   visible: boolean
   fixed?: boolean
+  overlayVisible?: boolean
   className?: string
   style?: React.CSSProperties
   overlayClassName?: string
@@ -27,7 +28,8 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
     anchor: 'left',
     visible: false,
     width: 300,
-    fixed: false
+    fixed: false,
+    overlayVisible: true
   }
 
   constructor (props: IDrawerProps) {
@@ -57,6 +59,7 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
       anchor,
       width,
       fixed,
+      overlayVisible,
       className,
       style,
       overlayClassName,
@@ -79,12 +82,16 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
 
     return (
       <div>
-        <Overlay
-          className={overlayClassName}
-          style={overlayStyle}
-          visible={visible}
-          onClick={this.handleClose}
-        />
+        {
+          overlayVisible &&
+          <Overlay
+            className={overlayClassName}
+            style={overlayStyle}
+            visible={visible}
+            fixed={fixed}
+            onClick={this.handleClose}
+          />
+        }
 
         <CSSTransition
           classNames='fui-Drawer'

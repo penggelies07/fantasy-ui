@@ -1,20 +1,23 @@
 import React from 'react'
-import * as classnames from 'classnames'
+import classnames from 'classnames'
+import './Browser.less'
 
 export default class Browser extends React.Component {
 
   render () {
-    const {className} = this.props
+    const {className, style} = this.props
+
+    const classString = classnames('Browser', className)
 
     return (
-      <div className={classnames(className, 'Browser')} style={this.style()}>
-        <div className='Browser__header'>
-          <div className='Browser__action'/>
-          <div className='Browser__action'/>
-          <div className='Browser__action'/>
-          <div className='Browser__address'/>
+      <div className={classString} style={style}>
+        <div className='Browser-header'>
+          <div className='Browser-action' />
+          <div className='Browser-action' />
+          <div className='Browser-action' />
+          <div className='Browser-address' />
         </div>
-        <div className='Browser__container'>
+        <div className='Browser-container'>
           {this.props.children}
         </div>
       </div>

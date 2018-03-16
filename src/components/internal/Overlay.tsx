@@ -2,6 +2,7 @@ import * as React from 'react'
 
 export interface IOverlayProps {
   visible: boolean
+  fixed?: boolean
   className?: string
   style?: React.CSSProperties
   onClick?: React.MouseEventHandler<HTMLDivElement>
@@ -10,13 +11,14 @@ export interface IOverlayProps {
 export default class Overlay extends React.Component<IOverlayProps> {
 
   static defaultProps = {
-    style: {}
+    style: {},
+    fixed: false
   }
 
-  getStyles = (visible: boolean) => {
+  getStyles = (visible: boolean, fixed: boolean) => {
     const style = {
       root: {
-        position: 'fixed',
+        position: fixed ? 'fixed' : 'absolute',
         top: '0',
         left: '-100%',
         zIndex: '1000',
@@ -45,13 +47,14 @@ export default class Overlay extends React.Component<IOverlayProps> {
   render () {
     const {
       visible,
+      fixed = false,
       className,
       style,
       onClick
     } = this.props
 
     // style
-    const styleString = Object.assign(this.getStyles(visible).root, style)
+    const styleString = Object.assign(this.getStyles(visible, fixed).root, style)
 
     return (
       <div

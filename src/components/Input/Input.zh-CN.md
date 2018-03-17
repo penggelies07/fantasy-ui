@@ -226,7 +226,7 @@ export default class InputGroupNormal extends React.Component {
         <Input.Group fullWidth className='mb10' header='Age'>
           <InputNumber placeholder='min' value={value} onChange={this.handleChange} />
           <Input placeholder='~' disabled style={{textAlign: 'center', flex: 'none', width: '30px'}} />
-          <Input placeholder='Input'  />
+          <Input placeholder='Input' />
         </Input.Group>
         <Input.Group fullWidth className='mb10' header='http://' footer='.com'>
           <Input />
@@ -241,15 +241,18 @@ export default class InputGroupNormal extends React.Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |---|---|---|---|
-| size | 尺寸 | 'small' \| 'normal' \|'large' | 'normal' |
-| type | 类型 | 'text' \| 'password' | 'text' |
+| type | 颜色 | 'default' \| 'white' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| 'info' | 'default' |
+| nativeType | 类型 | 'text' \| 'password' | 'text' |
+| size | 尺寸 | 'small' \| 'normal' \| 'large' | 'normal' |
+| shape | 圆角 | 'number' \| 'rectangle' \| 'circle' | - |
 | value | 输入框的值 | string | - |
 | placeholder | 提示 | string | - |
+| fullWidth | 撑满父容器宽度 | boolean | false |
 | readOnly | 只读 | boolean | false |
-| disabled | 禁用 | boolean | false |
-| full | 撑满父容器宽度 | boolean | false |
-| shape | 圆角 | 'number' \|'square' \| 'circle' | - |
 | autoFocus | 自动获取焦点 | boolean | false |
+| disabled | 禁用 | boolean | false |
+| disableBorder | 禁用边框 | boolean | false |
+| label | 标签 | React.ReactNode \| string | - |
 | prefix | 前缀元素 | Icon \| string | - |
 | suffix | 后缀元素 | Icon \| string | - |
 | onChange | 输入框值改变时触发的事件 | (e: ChangeEvent, value: string) => void | - |
@@ -261,6 +264,6 @@ export default class InputGroupNormal extends React.Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |---|---|---|---|
-| full | 是否撑满父容器宽度 | boolean | false |
-| header | 头部文本 | React.ReactNode | - |
-| footer | 尾部文本 | React.ReactNode | - |
+| fullWidth | 是否撑满父容器宽度 | boolean | false |
+| prefix | 前缀元素 | React.ReactNode | - |
+| suffix | 后缀元素 | React.ReactNode | - |

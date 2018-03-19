@@ -1,0 +1,203 @@
+@import "../../styles/mixins";
+@import "../../styles/variables/widget/Button";
+
+.button-size (@name, @fontSize, @paddingV, @paddingH, @height) {
+  &-@{name} {
+    padding: @paddingV @paddingH;
+
+    font-size: @fontSize;
+    line-height: @fontSize + 2px;
+
+    &.fui-Button-onlyIcon {
+      padding: @paddingV 0;
+      width: @height !important;
+    }
+  }
+}
+
+.button-gradient (@name, @background, @boxShadow) {
+  &.fui-Button-gradient-@{name} {
+    background: @background;
+    box-shadow: @boxShadow;
+  }
+}
+
+.button-type (@name, @background, @color) {
+  &-@{name} {
+    &.fui-Button-raised {
+      background: @background;
+      color: @color;
+      box-shadow: outside-shadow(@background);
+
+      &:hover {
+        background: lighten(@background, 6%);
+      }
+
+      &:active {
+        background: darken(@background, 6%);
+      }
+
+      & when (@name = white) {
+        box-shadow: outside-shadow(@button-background-default);
+
+        &:hover {
+          background: darken(@background, 4%);
+        }
+
+        &:active {
+          background: darken(@background, 10%);
+        }
+      }
+    }
+
+    &.fui-Button-flat {
+      background: inherit;
+      color: @background;
+      box-shadow: none;
+
+      &:hover {
+        background: lighten(@background, 25%);
+      }
+  
+      &:active {
+        background: lighten(@background, 15%);
+      }
+
+      & when (@name = white) {
+        color: @button-background-default;
+
+        &:hover {
+          background: lighten(@button-background-default, 25%);
+        }
+
+        &:active {
+          background: lighten(@button-background-default, 15%);
+        }
+      }
+    }
+
+    &.fui-Button-ring {
+      background: @button-background-white;
+      color: @background;
+      box-shadow: outside-shadow(@background, 70%),
+                  border-shadow(@background, 60%);
+
+      &:hover {
+        background: @button-background-white;
+        box-shadow: outside-shadow(@background, 80%),
+                    border-shadow(@background, 0%);
+      }
+
+      &:active {
+        background: fadeout(@background, 90%);
+      }
+
+      & when (@name = default), (@name = white) {
+        box-shadow: outside-shadow(@button-background-default);
+        color: @fontColor;
+
+        &:hover {
+          background: @button-background-white;
+          box-shadow: outside-shadow(@button-background-default, 80%),
+                        border-shadow(@button-background-default, 0%);
+        }
+
+        &:active {
+          background: fadeout(@button-background-default, 90%);
+        }
+      }
+    }
+
+    &.fui-Button-gradient {
+      color: @button-color;
+      
+      .button-gradient(primary, @button-gradient-primary, @button-boxShadow-primary);
+      .button-gradient(success, @button-gradient-success, @button-boxShadow-success);
+      .button-gradient(warning, @button-gradient-warning, @button-boxShadow-warning);
+      .button-gradient(danger, @button-gradient-danger, @button-boxShadow-danger);
+      .button-gradient(info, @button-gradient-info, @button-boxShadow-info);
+
+      &:hover {
+        opacity: .8;
+      }
+
+      &:active {
+        opacity: 1;
+      }
+      
+      & when (@name = default), (@name = white) {
+        background: @button-gradient-default;
+        color: @fontColor;
+        box-shadow: @button-boxShadow-default;
+
+        &:hover {
+          background: lighten(@button-background-default, 25%);
+        }
+
+        &:active {
+          background: lighten(@button-background-default, 15%);
+        }
+      }
+    }
+  }
+}
+
+.fui-Button {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  border-radius: @button-borderRadius;
+
+  line-height: 1.2em;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: top;
+
+  background: transparent;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+          appearance: none;
+  transition: background 0.3s,
+              color 0.3s,
+              box-shadow 0.3s;
+  
+  &-fullWidth {
+    display: flex;
+
+    width: 100%;
+  }
+
+  &-disabled,
+  &-loading {
+    opacity: 0.67;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .fui-Icon + span {
+    margin-left: 4px;
+  }
+
+  &:not(.bui-button--full) {
+    & + & {
+      margin-left: 5px;
+    }
+  }
+
+  .button-size(small, @button-fontSize-small, @button-paddingV-small, @button-paddingH-small, @button-height-small);
+  .button-size(normal, @button-fontSize-normal, @button-paddingV-normal, @button-paddingH-normal, @button-height-normal);
+  .button-size(large, @button-fontSize-large, @button-paddingV-large, @button-paddingH-large, @button-height-large);
+
+  .button-type(default, @button-background-default, @button-color-default);
+  .button-type(primary, @button-background-primary, @button-color-primary);
+  .button-type(success, @button-background-success, @button-color-success);
+  .button-type(warning, @button-background-warning, @button-color-warning);
+  .button-type(danger, @button-background-danger, @button-color-danger);
+  .button-type(info, @button-background-info, @button-color-info);
+  .button-type(white, @button-background-white, @button-color-white);
+}

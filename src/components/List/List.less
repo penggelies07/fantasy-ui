@@ -1,0 +1,30 @@
+@import "../../styles/mixins";
+@import "../../styles/variables/widget/List";
+
+.list-size (@name, @fontSize, @padding, @lineHeight, @title-padding) {
+  &-@{name} {
+    .fui-List-title {
+      padding: @title-padding;
+    }
+
+    .fui-ListItem {
+      padding: @padding;
+
+      font-size: @fontSize;
+      line-height: @lineHeight;
+    }
+  }
+}
+
+.fui-List {
+  &-title {
+    font-size: @list-title-fontSize;
+    line-height: 1;
+
+    color: @list-title-color;
+  }
+
+  .list-size(small, @list-item-fontSize-small, @list-item-padding-small, @list-item-lineHeight-small, @list-title-padding-small);
+  .list-size(normal, @list-item-fontSize-normal, @list-item-padding-normal, @list-item-lineHeight-normal, @list-title-padding-normal);
+  .list-size(large, @list-item-fontSize-large, @list-item-padding-large, @list-item-lineHeight-large, @list-title-padding-large);
+}

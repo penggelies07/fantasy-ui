@@ -1,0 +1,19 @@
+// Sizing shortcuts
+
+.size (@width; @height) {
+  width: @width;
+  height: @height;
+}
+
+.square (@size) {
+  .size(@size; @size);
+}
+
+.min-size (@width; @height) {
+  min-width: @width;
+  min-height: @height;
+}
+
+.min-square (@size) {
+  .min-size(@size; @size);
+}

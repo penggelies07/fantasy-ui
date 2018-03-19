@@ -1,0 +1,62 @@
+@import "../../styles/mixins";
+@import "../../styles/variables/widget/InputNumber";
+
+.fui-InputNumber {
+  @borderColor: @inputNumber-handler-borderColor;
+  @hover-color: @inputNumber-handler-hover-color;
+  @active-fill: @inputNumber-handler-active-fill;
+
+  .fui-Input-suffix {
+    right: 0 !important;
+
+    height: 100%;
+  }
+
+  &-handlers {
+    border-left: 1px solid @borderColor;
+    .size(26px, 100%);
+  
+    text-align: center;
+
+    transition: opacity 0.3s;
+  }
+
+  &-handlersUp,
+  &-handlersDown {
+    .size(100%, 50%);
+
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:after {
+      content: '';
+      display: inline-block;
+
+      border-top: 1px solid @borderColor;
+      border-right: 1px solid @borderColor;
+      .square(6px);
+
+      transition: border-color 0.3s;
+    }
+
+    &:hover,
+    &:active {
+      background: @active-fill;
+      &:after {
+        border-color: @hover-color;
+      }
+    }
+  }
+
+  &-handlersUp {
+    &:after {
+      transform: translateY(6px) rotate(-45deg);
+    }
+  }
+
+  &-handlersDown {
+    &:after {
+      transform: translateY(3px) rotate(135deg);
+    }
+  }
+}

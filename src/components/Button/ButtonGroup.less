@@ -1,0 +1,89 @@
+@import "../../styles/mixins";
+
+.fui-ButtonGroup {
+  display: inline-flex;
+
+  vertical-align: middle;
+
+  &-horizontal {
+    flex-direction: row;
+    align-items: center;
+
+    &.fui-ButtonGroup-fullWidth {
+      width: 100%;
+
+      .fui-Button {
+        flex: 1;
+
+        width: 100%;
+      }
+    }
+
+    .fui-Button {
+      &:first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+  
+      &:last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+  
+      &:not(:first-child):not(:last-child) {
+        border-radius: 0;
+      }
+  
+      &:not(:first-child) {
+        margin-left: -1px !important;
+      }
+
+      &:hover {
+        z-index: 2;
+      }
+    }
+  }
+
+  &-vertical {
+    flex-direction: column;
+    align-items: center;
+
+    &.fui-ButtonGroup-fullWidth {
+      height: 100%;
+    }
+
+    .fui-Button {
+      flex: 1;
+
+      width: 100%;
+
+      &:first-child {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+  
+      &:last-child {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+  
+      &:not(:first-child):not(:last-child) {
+        border-radius: 0;
+      }
+  
+      &:not(:first-child) {
+        margin-left: -1px !important;
+      }
+
+      &:hover {
+        z-index: 2;
+      }
+    }
+  }
+
+  &:not(.bui-button-group--full) {
+    & + & {
+      margin-left: 5px;
+    }
+  }
+}

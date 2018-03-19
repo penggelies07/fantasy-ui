@@ -1,0 +1,45 @@
+@import "../../styles/mixins";
+@import "../../styles/variables/widget/Grid";
+
+.make-grid-columns (@class, @index, @suffix: ~'') {
+  & when (@index = 0) {
+    &.@{class}@{suffix}-@{index} {
+      display: none;
+    }
+  }
+
+  & when (@index > 0) {
+    &.@{class}@{suffix}-@{index} {
+      width: percentage(@index / @grid-max-columns)
+    }
+    .make-grid-columns(@class, @index - 1, @suffix)
+  }
+}
+
+.fui-Col {
+  float: left;
+
+  box-sizing: border-box;
+
+  .make-grid-columns(fui-Col, @grid-max-columns);
+
+  @media (max-width: @screen-xs-max) {
+    .make-grid-columns(fui-Col, @grid-max-columns, -xs);
+  }
+
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    .make-grid-columns(fui-Col, @grid-max-columns, -sm);
+  }
+
+  @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+    .make-grid-columns(fui-Col, @grid-max-columns, -md);
+  }
+
+  @media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) {
+    .make-grid-columns(fui-Col, @grid-max-columns, -lg);
+  }
+
+  @media (min-width: @screen-xl-min) {
+    .make-grid-columns(fui-Col, @grid-max-columns, -xl);
+  }
+}

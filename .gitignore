@@ -8,5 +8,4 @@ node_modules/
 
 dist/
 site/
-src/
-site-src/
+site-src/components/

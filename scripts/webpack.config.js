@@ -52,7 +52,7 @@ const rules = {
   },
   url: {
     test: /\.(png|jpg|jpeg|gif)$/,
-    use: [{loader: 'url-loader', options: {limit: 8192}}]
+    use: [{loader: 'url-loader'}]
   }
 }
 
